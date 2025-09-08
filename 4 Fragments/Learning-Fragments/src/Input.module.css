@@ -1,0 +1,13 @@
+.container
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2%;
+}
+
+.container .input
+{
+    width:70%;
+    margin: 1%;
+
+}

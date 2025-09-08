@@ -1,0 +1,20 @@
+.container
+{
+    width:30%;
+    border: 1px solid black;
+    margin: auto;
+    padding: 5px;
+    margin-top: 2%;
+}
+
+h1
+{
+    text-align: center;
+}
+
+input
+{
+    display: block;
+    margin: auto;
+    margin-bottom: 2%;
+}
