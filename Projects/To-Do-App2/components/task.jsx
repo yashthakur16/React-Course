@@ -1,7 +1,11 @@
 import styles from "./task.module.css";
+import { AiTwotoneDelete } from "react-icons/ai";
+import ToDoItems from "../src/store/to-do-items";
+import { useContext } from "react";
 
 function Task(props) {
-  let arr = props.ta;
+  let pp = useContext(ToDoItems);
+  let arr = pp.arr;
 
   return (
     <>
@@ -19,9 +23,9 @@ function Task(props) {
                 <button
                   type="button"
                   className={`btn btn-danger`}
-                  onClick={() => props.handleDel(items.task)}
+                  onClick={() => pp.handleDel(items.task)}
                 >
-                  Delete
+                  <AiTwotoneDelete />
                 </button>
               </div>
             </div>

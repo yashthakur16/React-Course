@@ -1,48 +1,43 @@
-import { use } from "react";
 import styles from "./form.module.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import { IoMdAddCircleOutline } from "react-icons/io";
+import ToDoItems from "../src/store/to-do-items";
+import { useContext } from "react";
 
-function Form(props) {
-  let [task, changeTask] = useState("");
-  let [date, changeDate] = useState("");
+function Form() {
+  let task2 = useRef("");
+  let date2 = useRef("");
 
-  function handleOnChangeTask(value) {
-    changeTask(value);
-    console.log(value);
-  }
+  let pp = useContext(ToDoItems);
 
-  function handleOnChangeDate(value) {
-    changeDate(value);
-  }
   return (
     <>
       <div className={`${styles.contain}`}>
-        <div className={styles.row}>
+        <form
+          className={styles.row}
+          onSubmit={() => {
+            pp.handleAdd(task2.current.value, date2.current.value);
+            task2.current.value = "";
+            date2.current.value = "";
+          }}
+        >
           <div className={styles.col}>
             <input
               type="text"
               placeholder="Enter the task"
+              ref={task2}
               className={styles.inp}
-              onChange={(e) => handleOnChangeTask(e.target.value)}
             />
           </div>
           <div className={styles.col}>
-            <input
-              type="date"
-              className={styles.inp}
-              onChange={(e) => handleOnChangeDate(e.target.value)}
-            />
+            <input type="date" ref={date2} className={styles.inp} />
           </div>
           <div className={styles.col}>
-            <button
-              type="button"
-              className={`btn btn-success`}
-              onClick={() => props.handleAdd(task, date)}
-            >
-              Add Task
+            <button type="submit" className={`btn btn-success`}>
+              <IoMdAddCircleOutline />
             </button>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
