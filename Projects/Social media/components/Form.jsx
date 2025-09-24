@@ -12,13 +12,18 @@ function Form() {
   return (
     <form
       className="row g-3"
-      onSubmit={() =>
-        addPost(
-          titleRef.current.value,
-          bodyRef.current.value,
-          userIdRef.current.value
-        )
-      }
+      onSubmit={() => {
+        fetch("https://dummyjson.com/posts/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            title: "I am in love with someone.",
+            userId: 5,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => addPost(data));
+      }}
     >
       <div className="col-md-6">
         <label htmlFor="inputEmail4" className="form-label">

@@ -21,16 +21,24 @@ let reducer = (state, action) => {
 
 let PostDataProvider = (props) => {
   let [post, dispatchPost] = useReducer(reducer, []);
+
   let [fetching, setfetching] = useState(false);
 
   useEffect(() => {
+    let controller = new AbortController();
+    let signal = controller.signal;
+
     setfetching(true);
-    fetch("https://dummyjson.com/posts")
+    fetch("https://dummyjson.com/posts", { signal: signal })
       .then((res) => res.json())
       .then((data) => {
         getDefault(data.posts);
         setfetching(false);
       });
+    return () => {
+      console.log("cleaning up...");
+      controller.abort();
+    };
   }, []);
 
   let getDefault = (posts) => {
@@ -43,13 +51,14 @@ let PostDataProvider = (props) => {
     dispatchPost(action);
   };
 
-  let addPost = (t, b, u) => {
+  let addPost = (posts) => {
     let action = {
       type: "ADD",
-      t: t,
-      b: b,
-      u: u,
+      t: "New Post",
+      b: posts.title,
+      u: posts.id,
     };
+    console.log(posts);
     dispatchPost(action);
   };
 
@@ -66,7 +75,6 @@ let PostDataProvider = (props) => {
         posts: post,
         addPost: addPost,
         removePost: removePost,
-        getDefault: getDefault,
         fetching: fetching,
       }}
     >

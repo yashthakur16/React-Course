@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Post from "./Post";
 import { PostData } from "../store/post-data";
 import EmptyHandler from "./EmptyHandler";

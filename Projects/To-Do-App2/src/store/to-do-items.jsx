@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { createContext } from "react";
 import { useReducer } from "react";
 
@@ -35,18 +36,21 @@ let ToDoItemsprovider = (props) => {
     event.preventDefault();
   };
 
-  let handleDel = (t) => {
-    let DelAction = {
-      action: "DEL_ITEM",
-      payload: {
-        t: t,
-      },
-    };
-    changeArr(DelAction);
+  let handleDel = useCallback(
+    (t) => {
+      let DelAction = {
+        action: "DEL_ITEM",
+        payload: {
+          t: t,
+        },
+      };
+      changeArr(DelAction);
 
-    // let newArr = arr.filter((obj) => obj.task !== t);
-    // changeArr(newArr);
-  };
+      // let newArr = arr.filter((obj) => obj.task !== t);
+      // changeArr(newArr);
+    },
+    [changeArr]
+  );
 
   return (
     <ToDoItems.Provider value={{ arr, handleAdd, handleDel }}>
