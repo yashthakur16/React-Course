@@ -1,0 +1,26 @@
+.lead
+{
+    text-align: center;
+}
+
+.card
+{
+    margin: auto;
+    margin-top: 5%;
+}
+
+.control-row
+{
+    margin-top: 5%;
+}
+
+.row-input
+{
+    margin-top: 10%;
+}
+
+.privacy
+{
+    text-align: center;
+    color: red;
+}
