@@ -1,0 +1,74 @@
+import BagSummary from "../src/Components/BagSummary";
+import { bagItemsActions } from "../src/Store/bagItemsSlice";
+import "./bag.css";
+import { IoIosRemoveCircleOutline } from "react-icons/io";
+import { useDispatch, useSelector } from "react-redux";
+
+function Bag() {
+  let items = useSelector((state) => state.bagItems.bagItems);
+  let dispatch = useDispatch();
+  let handleDelete = (item) => {
+    dispatch(
+      bagItemsActions.delete({
+        item: item,
+      })
+    );
+  };
+  return (
+    <>
+      <main>
+        <div className="bag-page">
+          <div className="bag-items-container">
+            <div className="bag-item-container">
+              {items.map((item) => {
+                return (
+                  <div key={item.item_name}>
+                    <div className="item-left-part">
+                      <img className="bag-item-img" src={item.image} />
+                    </div>
+                    <div className="item-right-part">
+                      <div className="company">{item.company}</div>
+                      <div className="item-name">{item.item_name}</div>
+                      <div className="price-container">
+                        <span className="current-price">
+                          Rs {item.current_price}
+                        </span>
+                        <span className="original-price">
+                          Rs {item.original_price}
+                        </span>
+                        <span className="discount-percentage">
+                          ({item.discount_percentage}% OFF)
+                        </span>
+                      </div>
+                      <div className="return-period">
+                        <span className="return-period-days">
+                          ${item.return_period} days
+                        </span>{" "}
+                        return available
+                      </div>
+                      <div className="delivery-details">
+                        Delivery by
+                        <span className="delivery-details-days">
+                          ${item.delivery_date}
+                        </span>
+                      </div>
+                      <div
+                        className="remove-from-cart"
+                        onClick={() => handleDelete(item)}
+                      >
+                        <IoIosRemoveCircleOutline />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <BagSummary></BagSummary>
+        </div>
+      </main>
+    </>
+  );
+}
+
+export default Bag;
