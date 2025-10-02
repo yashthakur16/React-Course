@@ -8,7 +8,7 @@ It serves as both a **learning log** and a **portfolio of mini-projects**, showc
 ## 🚀 What This Repo Covers
 
 - ⚛️ **React Basics** – Components, JSX, Props, State  
-- 🪝 **React Hooks** – `useState`, `useEffect`, `useRef`, and custom hooks  
+- 🪝 **React Hooks** – `useState`, `useEffect`, `useRef` 
 - 🔁 **State Management** – Redux and Redux Toolkit  
 - 🌐 **Routing** – Navigation and dynamic routing with React Router  
 - 🏗️ **Project Development** – End-to-end projects using learned concepts  
